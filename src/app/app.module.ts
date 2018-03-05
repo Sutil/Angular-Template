@@ -13,6 +13,7 @@ import { NavbarModule} from './shared/navbar/navbar.module';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AppRoutes } from './app.routing';
+import { ClienteComponent } from './pessoas/cliente/cliente.component';
 @NgModule({
     imports:      [
         BrowserModule,
@@ -26,7 +27,8 @@ import { AppRoutes } from './app.routing';
     declarations: [
         AppComponent,
         AdminLayoutComponent,
-        AuthLayoutComponent
+        AuthLayoutComponent,
+        ClienteComponent
     ],
     bootstrap:    [ AppComponent ]
 })

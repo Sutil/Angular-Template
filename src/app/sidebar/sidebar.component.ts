@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, AfterViewChecked, AfterContentInit } from '@angular/core';
 import { ROUTES } from './sidebar-routes.config';
+import { ROTA } from './sidebar-route.conf';
 
 declare var $:any;
 var sidebarTimer;
@@ -12,6 +13,7 @@ var sidebarTimer;
 
 export class SidebarComponent implements OnInit{
     public menuItems: any[];
+    public items: any[];
 
     isNotMobileMenu(){
         if($(window).width() > 991){
@@ -28,6 +30,7 @@ export class SidebarComponent implements OnInit{
             $sidebar.perfectScrollbar();
         }
         this.menuItems = ROUTES.filter(menuItem => menuItem);
+        this.items = ROTA.filter(item => item);
         isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
         if (isWindows){

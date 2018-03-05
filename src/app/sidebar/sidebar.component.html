@@ -3,7 +3,7 @@
         <div class="logo">
             <div class="logo-normal">
                 <a href="https://www.creative-tim.com" class="simple-text">
-                    Creative Tim
+                    SysAutos
                 </a>
             </div>
 
@@ -22,7 +22,7 @@
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" class="collapsed">
                         <span>
-                            Tania Andrew
+                            Raphael Marengo
                             <b class="caret"></b>
                         </span>
                     </a>
@@ -31,19 +31,19 @@
                             <li>
                                 <a href="javascript:void(0)">
                                     <span class="sidebar-mini">MP</span>
-                                    <span class="sidebar-normal">My Profile</span>
+                                    <span class="sidebar-normal">Meu Perfil</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="javascript:void(0)">
                                     <span class="sidebar-mini">EP</span>
-                                    <span class="sidebar-normal">Edit Profile</span>
+                                    <span class="sidebar-normal">Editar Perfil</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="javascript:void(0)">
                                     <span class="sidebar-mini">S</span>
-                                    <span class="sidebar-normal">Settings</span>
+                                    <span class="sidebar-normal">Configurações</span>
                                 </a>
                             </li>
                         </ul>
@@ -109,9 +109,32 @@
                 <ul class="nav">
                     <li routerLinkActive="active">
                         <a  [routerLink]="[menuItems[0].path]">
-                            <i class="{{menuItems[0].icon}}">dashboard</i>
+                            <i class="material-icons">dashboard</i>
                             <p>{{menuItems[0].title}}</p>
                         </a>
+                    </li>
+                    <li *ngFor="let item of items" routerLinkActive="active">
+                        <a *ngIf="item.children.length == 0"  [routerLink]="[item.path]">
+                            <i class="material-icons">person</i>
+                            <p>{{item.title}}</p>
+                        </a>
+                        <a *ngIf="item.children.length > 0" data-toggle="collapse" href="#{{item.idCollapse}}">
+                            <i class="material-icons">{{item.icon}}</i>
+                            <p>{{item.title}}
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div *ngIf="item.children.length > 0" class="collapse" id="{{ item.idCollapse }}">
+                            <ul class="nav">
+                                    <li *ngFor="let child of item.children"  routerLinkActive="active">
+                                        <a  [routerLink]="[child.path]">
+                                            <i class="material-icons">{{child.icon}}</i>
+                                            
+                                            <span class="sidebar-normal">{{child.title}}</span>
+                                        </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                     <li routerLinkActive="active">
                         <a data-toggle="collapse" href="#componentsExamples">

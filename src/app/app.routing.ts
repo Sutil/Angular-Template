@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
+import { ClienteComponent } from './pessoas/cliente/cliente.component';
 
 export const AppRoutes: Routes = [
     {
@@ -16,7 +17,8 @@ export const AppRoutes: Routes = [
           {
         path: '',
         loadChildren: './dashboard/dashboard.module#DashboardModule'
-    },{
+    },
+    {
         path: 'components',
         loadChildren: './components/components.module#ComponentsModule'
     },{
