@@ -1,3 +1,5 @@
+import { DataObject } from './../data/config.data';
+import { ListsComponent } from './lists.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListsRoutes } from './lists.routing';
 import { RouterModule } from '@angular/router';
@@ -13,7 +15,11 @@ import { ClienteComponent } from '../pessoas/cliente/cliente.component';
       ReactiveFormsModule
   ],
   declarations: [
+      ListsComponent,
       ClienteComponent
-  ]  
+  ] ,
+  providers:[
+    DataObject
+  ]
 })
 export class ListsModule {}

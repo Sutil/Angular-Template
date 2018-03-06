@@ -1,3 +1,5 @@
+import { DataObject } from './../data/config.data';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 declare interface DataTable {
@@ -13,9 +15,30 @@ declare var $:any;
     templateUrl: 'lists.component.html'
 })
 export class ListsComponent implements OnInit{
+    
+    public url:string;
     public dataTable: DataTable;
+    colunas;
+
+
+    constructor(
+        private route: ActivatedRoute,
+        public dataObject: DataObject
+    ){
+
+    }
 
     ngOnInit(){
+        this.route.params.subscribe(
+            params => {
+                const obj = params['obj'];
+                this.url = obj;
+                this.findConfigList();
+            }
+        );
+
+        
+
         this.dataTable = {
             headerRow: [ 'Name', 'Position', 'Office', 'Age', 'Date', 'Actions' ],
             footerRow: [ 'Name', 'Position', 'Office', 'Age', 'Start Date', 'Actions' ],
@@ -102,5 +125,9 @@ export class ListsComponent implements OnInit{
 
         //  Activate the tooltips
         $('[rel="tooltip"]').tooltip();
+    }
+
+    findConfigList(){
+        this.colunas = this.dataObject.findDataTable(this.url);
     }
 }

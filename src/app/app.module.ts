@@ -1,3 +1,4 @@
+import { ListsModule } from './lists/lists.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -28,7 +29,6 @@ import { ClienteComponent } from './pessoas/cliente/cliente.component';
         AppComponent,
         AdminLayoutComponent,
         AuthLayoutComponent,
-        ClienteComponent
     ],
     bootstrap:    [ AppComponent ]
 })

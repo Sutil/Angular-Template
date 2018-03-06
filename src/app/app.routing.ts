@@ -45,6 +45,10 @@ export const AppRoutes: Routes = [
     },{
         path: '',
         loadChildren: './timeline/timeline.module#TimelineModule'
+    },
+    {
+        path: '',
+        loadChildren: './lists/lists.module#ListsModule'
     }
   ]
     },
