@@ -1,3 +1,4 @@
+import { ListsService } from './lists.service';
 import { DataObject } from './../data/config.data';
 import { ListsComponent } from './lists.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,7 +20,8 @@ import { ClienteComponent } from '../pessoas/cliente/cliente.component';
       ClienteComponent
   ] ,
   providers:[
-    DataObject
+    DataObject,
+    ListsService
   ]
 })
 export class ListsModule {}

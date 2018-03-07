@@ -16,31 +16,25 @@
                                     <thead>
                                         <tr>
                                             
-                                          <th>{{ dataTable.headerRow[0] }}</th>
+                                          <!-- <th>{{ dataTable.headerRow[0] }}</th>
                                           <th>{{ dataTable.headerRow[1] }}</th>
                                           <th>{{ dataTable.headerRow[2] }}</th>
                                           <th>{{ dataTable.headerRow[3] }}</th>
-                                          <th>{{ dataTable.headerRow[4] }}</th>
-                                          <th class="disabled-sorting text-right">{{ dataTable.headerRow[5] }}</th>
+                                          <th>{{ dataTable.headerRow[4] }}</th> -->
+                                          <th *ngFor="let column of colunas" >{{ column.header }}</th>
+                                          <th class="disabled-sorting text-right">Ações</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                          <th>{{ dataTable.footerRow[0] }}</th>
-                                          <th>{{ dataTable.footerRow[1] }}</th>
-                                          <th>{{ dataTable.footerRow[2] }}</th>
-                                          <th>{{ dataTable.footerRow[3] }}</th>
-                                          <th>{{ dataTable.footerRow[4] }}</th>
-                                          <th class="text-right">{{ dataTable.footerRow[5] }}</th>
+                                          <th *ngFor="let column of colunas" >{{ column.header }}</th>
+                                          <th class="text-right">Ações</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr *ngFor="let row of dataTable.dataRows">
-                                            <td>{{row[0]}}</td>
-                                            <td>{{row[1]}}</td>
-                                            <td>{{row[2]}}</td>
-                                            <td>{{row[3]}}</td>
-                                            <td>{{row[4]}}</td>
+                                        <tr *ngFor="let row of dataRows">
+                                            <td  *ngFor="let column of colunas" >{{ column.cell(row) }}</td>
+                                            
                                             <td class="text-right">
                                                 <button class="btn btn-simple btn-info btn-icon like" rel="tooltip" title="Like" data-placement="left">
                                                     <i class="material-icons">favorite</i>
