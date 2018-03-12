@@ -1,88 +1,62 @@
+import { ListsService } from './lists.service';
 import { Person } from './../models/person.model';
-import { ColumnObj } from './../data/model.object';
+import { ColumnObj, ObjectConfig } from './../data/model.object';
 import { DataObject } from './../data/config.data';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 
-declare var $:any;
+
 @Component({
     moduleId: module.id,
     selector: 'lists',
+    styleUrls: ['lists.component.css'],
     templateUrl: 'lists.component.html'
 })
-export class ListsComponent implements OnInit{
-    
-    public url:string;
-    colunas: ColumnObj[] = [];
-    dataRows: Person[] = [];
+export class ListsComponent implements OnInit, AfterViewInit {
 
-    constructor(
-        private route: ActivatedRoute,
-        public dataObject: DataObject
-    ){
+    constructor(private service: ListsService,
+        private activatedRoute: ActivatedRoute,
+        private dataObject: DataObject) {
 
     }
 
-    ngOnInit(){
-        this.route.params.subscribe(
+    ngOnInit() {
+        this.activatedRoute.params.subscribe(
             params => {
-                const obj = params['obj'];
-                this.url = obj;
-                this.findConfigList();
+                this.obj = params['obj'];
+                this.config = this.dataObject.findConfig(this.obj);
             }
         );
 
+        this.dataList.sort = this.sort;
+        this.dataList.paginator = this.paginator;
+        this.columns = this.config.columns;
+        this.displayedColumns = this.columns.map(c => c.def);
+    }
 
-         this.dataRows = [
-             {name: "Sutil", rg: "78974564"},
-             {name: "Sutil", rg: "78974564"},
-             {name: "Sutil", rg: "78974564"},
-             {name: "Sutil", rg: "78974564"},
-             {name: "Sutil", rg: "78974564"},
-             {name: "Sutil", rg: "78974564"},
-         ];
+    obj: string = "";
+    config: ObjectConfig;
+    dataList = new MatTableDataSource();
+    columns = [];
+    displayedColumns: string[] = [];
+
+    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+
+
+    ngAfterViewInit() {
+
+        this.service.findAll(this.config.urlFindAll)
+            .subscribe(data => {
+                this.dataList.data = data;
+            });
 
     }
 
-    ngAfterViewInit(){
-        $('#datatables').DataTable({
-            "pagingType": "full_numbers",
-            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-            responsive: true,
-            language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Search records",
-            }
-
-        });
-
-        var table = $('#datatables').DataTable();
-
-        // Edit record
-        table.on( 'click', '.edit', function () {
-            var $tr = $(this).closest('tr');
-
-            var data = table.row($tr).data();
-            alert( 'You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.' );
-        } );
-
-        // Delete a record
-        table.on( 'click', '.remove', function (e) {
-            var $tr = $(this).closest('tr');
-            table.row($tr).remove().draw();
-            e.preventDefault();
-        } );
-
-        //Like record
-        table.on( 'click', '.like', function () {
-            alert('You clicked on Like button');
-        });
-
-        //  Activate the tooltips
-        $('[rel="tooltip"]').tooltip();
-    }
-
-    findConfigList(){
-        this.colunas = this.dataObject.findDataTable(this.url);
+    applyFilter(filterValue: string) {
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        this.dataList.filter = filterValue;
     }
 }

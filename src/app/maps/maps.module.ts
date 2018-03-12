@@ -19,7 +19,7 @@ import { VectorMapsComponent } from './vectormaps/vectormaps.component';
     RouterModule.forChild(MapsRoutes),
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDYEA1bkC2h306Td4AV2zN-IEfKNvp8BT4'
+      apiKey: 'AIzaSyD9USxSau7qRxETs5DI7WszFvDc8ZjQ9VI'
     })
   ],
   declarations: [

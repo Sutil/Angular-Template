@@ -10,46 +10,37 @@
                             <h4 class="card-title">{{url}}</h4>
                             <div class="toolbar">
                                 <!--        Here you can write extra buttons/actions for the toolbar              -->
+
                             </div>
-                            <div class="material-datatables table-responsive">
-                                <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            
-                                          <!-- <th>{{ dataTable.headerRow[0] }}</th>
-                                          <th>{{ dataTable.headerRow[1] }}</th>
-                                          <th>{{ dataTable.headerRow[2] }}</th>
-                                          <th>{{ dataTable.headerRow[3] }}</th>
-                                          <th>{{ dataTable.headerRow[4] }}</th> -->
-                                          <th *ngFor="let column of colunas" >{{ column.header }}</th>
-                                          <th class="disabled-sorting text-right">Ações</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                          <th *ngFor="let column of colunas" >{{ column.header }}</th>
-                                          <th class="text-right">Ações</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr *ngFor="let row of dataRows">
-                                            <td  *ngFor="let column of colunas" >{{ column.cell(row) }}</td>
-                                            
-                                            <td class="text-right">
-                                                <button class="btn btn-simple btn-info btn-icon like" rel="tooltip" title="Like" data-placement="left">
-                                                    <i class="material-icons">favorite</i>
-                                                </button>
-                                                <button class="btn btn-simple btn-warning btn-icon edit" rel="tooltip" title="Edit" data-placement="left">
-                                                    <i class="material-icons">dvr</i>
-                                                </button>
-                                                <button class="btn btn-simple btn-danger btn-icon remove" rel="tooltip" title="Remove" data-placement="left">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
+                            
+                            
+                            <div class="list-header">
+                                <mat-form-field>
+                                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+                                </mat-form-field>
                             </div>
+                            
+                            <mat-table #table [dataSource]="dataList" matSort>
+                                    <ng-container *ngFor="let col of columns" matColumnDef="{{col.def}}">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ col.header }}</mat-header-cell>
+                                        <mat-cell *matCellDef="let element"> {{col.cell(element)}} </mat-cell>
+                                    </ng-container>
+
+                                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                            </mat-table>
+
+                            <mat-paginator #paginator 
+                                [pageSize]="7" 
+                                [pageSizeOptions]="[7, 14, 21]" 
+                                class="mat-elevation-z1">
+                            </mat-paginator>
+
+                            
+                        
+
                         </div>
                         <!-- end content-->
                     </div>

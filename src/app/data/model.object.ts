@@ -1,13 +1,14 @@
 
 
 export class ColumnObj {
-    columnDef: string; 
+    def: string; 
     header: string;
     cell: any;
 }
 
-export class ModelObject {
+export class ObjectConfig {
     url:string = "";
+    urlFindAll:string = "";
     atributes:string = "";
     columns: ColumnObj[] = [];
     type;

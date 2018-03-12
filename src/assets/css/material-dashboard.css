@@ -11,6 +11,11 @@
  =========================================================
 
  */
+
+.cdk-visually-hidden {
+  display: none !important;
+}
+
 .noUi-target,
 .noUi-target * {
   -webkit-touch-callout: none;

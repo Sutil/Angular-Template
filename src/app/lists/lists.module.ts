@@ -7,13 +7,19 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ClienteComponent } from '../pessoas/cliente/cliente.component';
+import { MatTableModule, MatSortModule, MatPaginatorModule, MatFormFieldModule, MatInputModule } from '@angular/material'
 
 @NgModule({
   imports:[
       CommonModule,
       RouterModule.forChild(ListsRoutes),
       FormsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      MatTableModule,
+      MatSortModule,
+      MatPaginatorModule,
+      MatFormFieldModule,
+      MatInputModule
   ],
   declarations: [
       ListsComponent,

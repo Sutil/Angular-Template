@@ -1,23 +1,20 @@
+import { ObjectConfig } from './../data/model.object';
+import { DataObject } from './../data/config.data';
 import { Person } from './../models/person.model';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
-import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable()
 export class ListsService {
 
-  constructor(protected http: Http) { }
+  constructor(protected dataObject: DataObject, protected http: HttpClient) { }
 
   __memoryData: any[];
 
-  findAll(objName:string): Observable<any>{
-
-    let list: any[]  = [];
-
-
-    this.http.get("./assets/mock/person.mock.json");
-
-    return Observable.of(Person).map(p => p);
+  findAll(urlFindAll:string) :Observable<any[]> {
+    return this.http.get<any>(urlFindAll);
   }
 
 }
