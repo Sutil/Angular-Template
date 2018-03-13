@@ -7,6 +7,7 @@ export class Person {
 
 export const person_config:ObjectConfig = {
     url: "person",
+    title: "Person",
     urlFindAll : "./assets/mock/person.mock.json",
     atributes: "",
     columns: [

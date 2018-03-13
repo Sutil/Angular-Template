@@ -8,6 +8,7 @@ export class ColumnObj {
 
 export class ObjectConfig {
     url:string = "";
+    title ="";
     urlFindAll:string = "";
     atributes:string = "";
     columns: ColumnObj[] = [];

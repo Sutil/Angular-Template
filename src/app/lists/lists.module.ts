@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ClienteComponent } from '../pessoas/cliente/cliente.component';
-import { MatTableModule, MatSortModule, MatPaginatorModule, MatFormFieldModule, MatInputModule } from '@angular/material'
+import { MatTableModule, MatSortModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule } from '@angular/material'
 
 @NgModule({
   imports:[
@@ -19,7 +19,9 @@ import { MatTableModule, MatSortModule, MatPaginatorModule, MatFormFieldModule, 
       MatSortModule,
       MatPaginatorModule,
       MatFormFieldModule,
-      MatInputModule
+      MatInputModule,
+      MatIconModule,
+      MatButtonModule
   ],
   declarations: [
       ListsComponent,

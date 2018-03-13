@@ -6,6 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 
+declare var $:any;
+declare var swal:any;
 
 @Component({
     moduleId: module.id,
@@ -14,6 +16,16 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
     templateUrl: 'lists.component.html'
 })
 export class ListsComponent implements OnInit, AfterViewInit {
+
+    obj: string = "";
+    title: string = "";
+    config: ObjectConfig;
+    dataList = new MatTableDataSource();
+    columns = [];
+    displayedColumns: string[] = [];
+
+    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     constructor(private service: ListsService,
         private activatedRoute: ActivatedRoute,
@@ -26,24 +38,19 @@ export class ListsComponent implements OnInit, AfterViewInit {
             params => {
                 this.obj = params['obj'];
                 this.config = this.dataObject.findConfig(this.obj);
+                this.defineConfigs();
             }
         );
 
         this.dataList.sort = this.sort;
         this.dataList.paginator = this.paginator;
-        this.columns = this.config.columns;
-        this.displayedColumns = this.columns.map(c => c.def);
     }
 
-    obj: string = "";
-    config: ObjectConfig;
-    dataList = new MatTableDataSource();
-    columns = [];
-    displayedColumns: string[] = [];
-
-    @ViewChild(MatSort) sort: MatSort;
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-
+    defineConfigs(){
+        this.title = this.config.title;
+        this.columns = this.config.columns;
+        this.displayedColumns = this.columns.map(c => c.def).concat('action');
+    }
 
     ngAfterViewInit() {
 
@@ -58,5 +65,27 @@ export class ListsComponent implements OnInit, AfterViewInit {
         filterValue = filterValue.trim(); // Remove whitespace
         filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
         this.dataList.filter = filterValue;
+    }
+
+    showMessage(){
+        swal({
+            title: 'Tem certeza que deseja excluir ?',
+            text: "Esta operação não poderá ser desfeita!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-danger',
+            cancelButtonClass: 'btn btn-basic',
+            confirmButtonText: 'Sim, excluir!',
+            cancelButtonText:"Cancelar",
+            buttonsStyling: false
+        }).then(function() {
+          swal({
+            title: 'Excluido!',
+            text: 'Este registro foi excluído.',
+            type: 'success',
+            confirmButtonClass: "btn btn-success",
+            buttonsStyling: false
+            });
+        });
     }
 }

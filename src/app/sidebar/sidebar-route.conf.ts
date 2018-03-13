@@ -12,7 +12,7 @@ export const ROTA: RouteItem[] = [
 
     { path: '', 
     title: 'Pessoas', icon:'account_circle', idCollapse:"pessoas", children:[
-        {path: '/fornecedores', title: 'Fornecedores', icon:'account_box'},
+        {path: '/lists/person', title: 'Fornecedores', icon:'account_box'},
         {path: '/clientes', title: 'Clientes', icon:'account_circle'},
         {path: '/users', title: 'Usuários', icon:'supervisor_account'},
     ] },

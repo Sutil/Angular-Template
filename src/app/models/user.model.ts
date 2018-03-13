@@ -6,6 +6,7 @@ export class User {
 
 export const user_config: ObjectConfig = {
     url: "user",
+    title: "User",
     urlFindAll: "./assets/mock/user.mock.json",
     atributes: "",
     columns: [

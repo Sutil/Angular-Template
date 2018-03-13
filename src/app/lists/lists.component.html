@@ -7,10 +7,10 @@
                             <i class="material-icons">assignment</i>
                         </div>
                         <div class="card-content">
-                            <h4 class="card-title">{{url}}</h4>
+                            <h4 class="card-title">{{ title }}</h4>
                             <div class="toolbar">
                                 <!--        Here you can write extra buttons/actions for the toolbar              -->
-
+                                <button mat-button class="btn btn-primary">Adicionar novo</button>
                             </div>
 
                             
@@ -25,6 +25,18 @@
                                     <ng-container *ngFor="let col of columns" matColumnDef="{{col.def}}">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>{{ col.header }}</mat-header-cell>
                                         <mat-cell *matCellDef="let element"> {{col.cell(element)}} </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="action">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header>Ações</mat-header-cell>
+                                        <mat-cell *matCellDef="let element">
+                                                <button mat-icon-button class="btn btn-primary btn-simple" >
+                                                        <mat-icon aria-label="">edit</mat-icon>
+                                                </button>
+                                                <button (click)="showMessage()"  mat-icon-button class="btn btn-danger btn-simple">
+                                                        <mat-icon aria-label="">cancel</mat-icon>
+                                                </button>
+                                        </mat-cell>
+                                        
                                     </ng-container>
 
                                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
