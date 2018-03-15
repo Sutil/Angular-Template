@@ -1,3 +1,4 @@
+import { AuthenticationService } from './authentication/authentication.service';
 import { Routes } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
@@ -48,6 +49,7 @@ export const AppRoutes: Routes = [
     },
     {
         path: '',
+        canActivate: [AuthenticationService],
         loadChildren: './lists/lists.module#ListsModule'
     }
   ]

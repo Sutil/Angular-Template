@@ -1,3 +1,5 @@
+import { DataModule } from './data-module/data-module.module';
+import { AuthenticationService } from './authentication/authentication.service';
 import { ListsModule } from './lists/lists.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,7 +28,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         SidebarModule,
         NavbarModule,
         FooterModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        DataModule.forRoot()
     ],
     declarations: [
         AppComponent,
