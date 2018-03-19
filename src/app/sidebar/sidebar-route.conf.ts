@@ -7,6 +7,7 @@ export const ROTA: RouteItem[] = [
         {path: '/faturamento', title: 'Faturamento', icon:'attach_money'},
         {path: '/banner', title: 'Banner', icon:'burst_mode'},
         {path: '/interesses', title: 'Interessados', icon:'face'},
+        {path: '/administracao/marca', title: 'Marcas', icon:'card_membership'},
     ] },
 
 

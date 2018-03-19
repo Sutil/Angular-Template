@@ -49,7 +49,10 @@ export const AppRoutes: Routes = [
     },
     {
         path: '',
-        canActivate: [AuthenticationService],
+        loadChildren: './administracao/administracao.module#AdministracaoModule'
+    },
+    {
+        path: '',
         loadChildren: './lists/lists.module#ListsModule'
     }
   ]
