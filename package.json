@@ -59,7 +59,7 @@
     "@types/chartist": "^0.9.38",
     "@types/jasmine": "2.8.6",
     "@types/jquery": "^3.3.1",
-    "@types/node": "^9.4.7",
+    "@types/node": "^10.12.18",
     "codelyzer": "~4.2.1",
     "jasmine-core": "^2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
